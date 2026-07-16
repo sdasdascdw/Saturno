@@ -1,12 +1,265 @@
-<div class="container">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>🪐 Saturno - Download</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0a0a0f;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #e0e0e0;
+            padding: 20px;
+        }
+        .container {
+            background: #1a1a2e;
+            padding: 50px 60px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+            max-width: 750px;
+            width: 100%;
+            text-align: center;
+            border: 1px solid #2a2a4a;
+        }
+        .icon {
+            font-size: 80px;
+            margin-bottom: 15px;
+        }
+        h1 {
+            font-size: 42px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #ff6b6b, #ffa94d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+        }
+        .subtitle {
+            font-size: 16px;
+            color: #8888aa;
+            margin-bottom: 30px;
+        }
+        .info-box {
+            background: #0f0f1f;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            border-left: 4px solid #ff6b6b;
+            text-align: left;
+        }
+        .info-box p {
+            color: #aaaacc;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 6px;
+        }
+        .info-box strong {
+            color: #ffa94d;
+        }
+        .warning {
+            background: #1f0f0f;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #ff4444;
+            margin-bottom: 25px;
+            color: #ff6b6b;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        .download-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            color: #fff;
+            border: none;
+            padding: 16px 50px;
+            font-size: 20px;
+            font-weight: 700;
+            border-radius: 50px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(255, 107, 107, 0.3);
+        }
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(255, 107, 107, 0.5);
+        }
+        .download-btn:active {
+            transform: scale(0.96);
+        }
+
+        /* Installation Steps */
+        .steps {
+            background: #0f0f1f;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: left;
+            border: 1px solid #2a2a4a;
+        }
+        .steps h3 {
+            color: #ffa94d;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        .step {
+            background: #0a0a15;
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            border-left: 3px solid #ff6b6b;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 14px;
+            color: #e0e0e0;
+            word-break: break-all;
+        }
+        .step .cmd {
+            color: #ffa94d;
+        }
+        .step .label {
+            color: #8888aa;
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 12px;
+            display: block;
+            margin-bottom: 4px;
+        }
+        .copy-btn {
+            background: #2a2a4a;
+            color: #fff;
+            border: none;
+            padding: 4px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            float: right;
+            transition: background 0.2s;
+        }
+        .copy-btn:hover {
+            background: #3a3a5a;
+        }
+
+        .features {
+            margin-top: 25px;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 15px;
+        }
+        .feature {
+            background: #12122a;
+            padding: 15px 10px;
+            border-radius: 10px;
+            border: 1px solid #2a2a4a;
+        }
+        .feature span {
+            display: block;
+            font-size: 28px;
+            margin-bottom: 5px;
+        }
+        .feature p {
+            font-size: 12px;
+            color: #8888aa;
+        }
+        .footer {
+            margin-top: 25px;
+            color: #555577;
+            font-size: 13px;
+        }
+        .footer a {
+            color: #ff6b6b;
+            text-decoration: none;
+        }
+        .badge {
+            display: inline-block;
+            background: #ff6b6b22;
+            color: #ff6b6b;
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            border: 1px solid #ff6b6b44;
+            margin-bottom: 12px;
+        }
+        .version {
+            color: #555577;
+            font-size: 13px;
+            margin-top: 10px;
+        }
+        .filename {
+            background: #0f0f1f;
+            color: #ffa94d;
+            padding: 6px 16px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 14px;
+            display: inline-block;
+            margin-bottom: 15px;
+            border: 1px solid #2a2a4a;
+        }
+        .github-link {
+            display: block;
+            margin-top: 15px;
+            color: #8888aa;
+            font-size: 13px;
+        }
+        .github-link a {
+            color: #ff6b6b;
+            text-decoration: none;
+        }
+        .python-badge {
+            display: inline-block;
+            background: #3776ab22;
+            color: #3776ab;
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            border: 1px solid #3776ab44;
+            margin-bottom: 12px;
+        }
+        @media (max-width: 600px) {
+            .container {
+                padding: 30px 20px;
+                margin: 10px;
+            }
+            .features {
+                grid-template-columns: 1fr;
+            }
+            h1 {
+                font-size: 28px;
+            }
+            .download-btn {
+                padding: 14px 30px;
+                font-size: 17px;
+            }
+            .step {
+                font-size: 12px;
+                word-break: break-all;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
         <div class="icon">🪐</div>
         <h1>Saturno</h1>
         <div class="subtitle">🔐 One-Time Use Encryptor</div>
 
         <div class="badge">⚠️ VM TESTING ONLY</div>
+        <div class="python-badge">🐍 Python 3.8+ Required</div>
+
+        <div class="filename">📄 os.py</div>
 
         <div class="warning">
-            ⚠️ THIS WILL ENCRYPT: Documents, Desktop &amp; Downloads<br>
+            ⚠️ THIS WILL ENCRYPT: Documents, Desktop &amp; Downloads<br />
             ✅ ONLY use on a Virtual Machine!
         </div>
 
@@ -18,11 +271,61 @@
             <p><strong>💻 OS:</strong> Windows only</p>
         </div>
 
-        <a href="os.py" download="os.py" class="download-btn">
-    ⬇️ Download os.py
-</a>
+        <!-- DOWNLOAD BUTTON -->
+        <a href="os.py" class="download-btn" id="downloadBtn">⬇️ Download os.py</a>
+
+        <!-- INSTALLATION STEPS -->
+        <div class="steps">
+            <h3>📦 Installation Instructions</h3>
+
+            <div class="step">
+                <span class="label">Step 1: Install Python 3.8+</span>
+                <a href="https://www.python.org/downloads/" target="_blank" style="color:#ffa94d;">Download Python</a>
+                <span style="color:#8888aa; font-family:'Segoe UI',sans-serif; font-size:12px; display:block; margin-top:4px;">
+                    ✅ Make sure to check "Add Python to PATH" during installation
+                </span>
+            </div>
+
+            <div class="step">
+                <span class="label">Step 2: Install required packages</span>
+                <span style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap;">
+                    <span><span class="cmd">pip install pycryptodome requests</span></span>
+                    <button class="copy-btn" onclick="copyText('pip install pycryptodome requests')">📋 Copy</button>
+                </span>
+                <span style="color:#8888aa; font-family:'Segoe UI',sans-serif; font-size:12px; display:block; margin-top:4px;">
+                    💡 Or use: <span style="color:#ffa94d;">pip install -r requirements.txt</span>
+                </span>
+            </div>
+
+            <div class="step">
+                <span class="label">Step 3: Run the encryptor</span>
+                <span style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap;">
+                    <span><span class="cmd">python os.py</span></span>
+                    <button class="copy-btn" onclick="copyText('python os.py')">📋 Copy</button>
+                </span>
+            </div>
+
+            <div class="step" style="border-left-color: #00b894;">
+                <span class="label">📄 Alternative: Using requirements.txt</span>
+                <span style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap;">
+                    <span><span class="cmd">pip install -r requirements.txt</span></span>
+                    <button class="copy-btn" onclick="copyText('pip install -r requirements.txt')">📋 Copy</button>
+                </span>
+            </div>
+        </div>
+
+        <!-- REQUIREMENTS.TXT LINK -->
+        <div style="margin: 10px 0 20px 0; font-size:14px; color:#8888aa;">
+            📄 <a href="requirements.txt" target="_blank" style="color:#ffa94d;">requirements.txt</a> — contains all dependencies
+        </div>
 
         <div class="version">v2.0 | Python 3.8+</div>
+
+        <div class="github-link">
+            📂 <a href="os.py" target="_blank">View raw file</a> •
+            <a href="requirements.txt" target="_blank">requirements.txt</a> •
+            <a href="#" onclick="window.location.reload();">Refresh</a>
+        </div>
 
         <div class="features">
             <div class="feature">
@@ -40,7 +343,46 @@
         </div>
 
         <div class="footer">
-            🪐 Saturno — For educational &amp; VM testing only.<br>
+            🪐 Saturno — For educational &amp; VM testing only.<br />
             <a href="https://discord.gg/yourinvite" target="_blank">💬 Discord</a>
         </div>
     </div>
+
+    <script>
+        // Copy to clipboard function
+        function copyText(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                const btns = document.querySelectorAll('.copy-btn');
+                btns.forEach(btn => {
+                    if (btn.textContent === '📋 Copy') {
+                        btn.textContent = '✅ Copied!';
+                        setTimeout(() => {
+                            btn.textContent = '📋 Copy';
+                        }, 2000);
+                    }
+                });
+            }).catch(() => {
+                // Fallback
+                const textArea = document.createElement('textarea');
+                textArea.value = text;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+            });
+        }
+
+        // Download feedback
+        document.getElementById('downloadBtn').addEventListener('click', function() {
+            const btn = this;
+            btn.textContent = '⬇️ Downloading...';
+            btn.style.background = 'linear-gradient(135deg, #00b894, #00a381)';
+            setTimeout(() => {
+                btn.textContent = '⬇️ Download os.py';
+                btn.style.background = 'linear-gradient(135deg, #ff6b6b, #ee5a24)';
+            }, 4000);
+        });
+    </script>
+
+</body>
+</html>
